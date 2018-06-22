@@ -15,9 +15,8 @@ axes = plt.gca()
 axes.set_xlim([0,3100])
 axes.tick_params(labelsize=12)
 
-for j in range(0,12):
-	file = np.loadtxt("total_energies.dat",unpack=True)
-	n, bins, patches = plt.hist(file[1], 150, linewidth=1, facecolor='darkcyan', alpha=0.75)
+file = np.loadtxt("energy_bins.dat",unpack=True)
+bars = axes.bar(file[0], file[1], 10, color='darkcyan',edgecolor='k',linewidth=0.3)
 
 plt.legend(loc=1, shadow=True, fontsize=12)
 plt.xlabel('Total Energy of Event (keV)', fontsize=12, weight='normal', family='serif')
@@ -31,3 +30,16 @@ os.system('okular '+figname)
 plt.clf()
 
 
+plt.plot(file[0], file[2], linewidth=2, color='darkcyan')
+
+plt.legend(loc=1, shadow=True, fontsize=12)
+plt.xlabel('Total Energy of Event (keV)', fontsize=12, weight='normal', family='serif')
+plt.ylabel('Percentile', fontsize=12, weight='normal', family='serif')
+plt.title('Percentage of events below given energy', fontsize=12, weight='normal', family='serif')
+plt.grid(True)
+plt.tight_layout()
+
+figname = 'percentile'+'.png'
+plt.savefig(figname, format='png')
+os.system('okular '+figname)
+plt.clf()
