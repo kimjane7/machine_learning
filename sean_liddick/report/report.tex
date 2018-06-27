@@ -13,6 +13,7 @@
 \usepackage{tikz}
 \usepackage[margin=1in]{geometry}
 \usepackage{nicefrac}
+\usepackage{subcaption}
 \usetikzlibrary{arrows,shapes,positioning}
 \newenvironment{psmallmatrix}
   {\left[\begin{matrix}}
@@ -46,7 +47,7 @@
 
 \noindent Each line of the data represents one event. I will henceforth index each event by an integer $i \in [0,999999]$. The first 256 numbers in each line represents the energy deposited into the 256 pixels. The pixels will be indexed by an integer $j \in [0,255]$. The next three numbers in the line give the initial energy of the electron $E_0$, along with its initial position $(x_0,y_0)$ in mm. Three additional numbers act as placeholders for the initial energy and initial position of the second electron for the future two-electron events.\\
 
-\noindent In the simulation, the initial position of the electron is randomly sampled from a uniform distribution in a 3 cm $\times$ 3 cm $\times$ 3 mm subset of the detector (blue region in the figure below), i.e. $x_0,y_0 \in Unif(-15$ mm$,15$ mm$)$. The electrons are all given an initial energy of 3060 keV. In the figure below, the pixels are labeled with their corresponding index $j$.
+\noindent In the simulation, the initial position of the electron is randomly sampled from a uniform distribution in a 3 cm $\times$ 3 cm $\times$ 3 mm subset of the detector (blue region in the figure below), i.e. $x_0,y_0 \in Unif(-15$ mm$,15$ mm$)$. The electrons are all given an initial energy of $E_0=3060$ keV. In the figure below, the pixels are labeled with their corresponding index $j$.
 
 \begin{center}
 \begin{tikzpicture}
@@ -89,12 +90,12 @@ For each event $i$, the total energy deposited was calculated by summing over th
 
 \begin{center}
 \begin{figure*}
-\includegraphics[scale=0.9]{../energy_distribution.png}
+\includegraphics[scale=0.9]{../figures/energy_distribution.png}
 
 \textit{Figure 2(a).} The total energy distribution. There is a clear peak at 3060 keV, the initial energy of the electrons, and a clear dip slightly below the peak. The dip indicates some electrons undergo Brehmsstrahlung radiation and emit a photon with energy $\sim 100$ keV.
 \end{figure*}
 \begin{figure*}
-\includegraphics[scale=0.9]{../percentile.png}
+\includegraphics[scale=0.9]{../figures/percentile.png}
 
 \textit{Figure 2(b).} Cumulative energy distribution. The histogram from the previous figure was integrated and normalized. About 60$\%$ of the total energies are below the peak. 
 \end{figure*}
@@ -102,11 +103,77 @@ For each event $i$, the total energy deposited was calculated by summing over th
 
 \subsection{Correlations}
 
+In the experiment, we will only know how much energy was deposited into each cell (or pixel). One or more cells may be activated in any given event. Using the simulated data, I wanted to learn more about how the initial position $(x_0,y_0)$ of the simulated electron correlated with the cell(s) $\{ j_\alpha, j_\beta, ... \}$ it eventually dumped energy into. The idea is that if cell $j$ was activated, then it's more likely that the electron originated from a position close to or inside cell $j$ than from the other side of the detector. \\
+
+
+\noindent First, for every cell $j \in [0,255]$ I collected all the initial positions of the electrons which eventually activated cell $j$. This information is stored in corresponding data files named \texttt{cellj.dat}. In figure
+
+\begin{figure*}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{../figures/cellfigs/cell60.png}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{../figures/cellfigs/cell121.png}
+  \label{fig:sub2}
+\end{subfigure}
+\label{fig:test}
+
+\medskip
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{../figures/cellfigs/cell221.png}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{../figures/cellfigs/cell255.png}
+  \label{fig:sub2}
+\end{subfigure}
+\label{fig:test}
+\textit{Figure 3.} Four examples of the distribution of initial positions around a cell. Histograms of the positions in the $x-$ and $y-$directions are given to help understand the shape of the distribution. The histograms were normalized and fitted to a generalized normal distribution. The black squares in the scatterplots are the outlines of the cells in question.
+\end{figure*}
+
+\begin{figure*}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{../figures/cellfigs/probdens60.png}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{../figures/cellfigs/probdens121.png}
+  \label{fig:sub2}
+\end{subfigure}
+\label{fig:test}
+
+\medskip
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{../figures/cellfigs/probdens221.png}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{../figures/cellfigs/probdens255.png}
+  \label{fig:sub2}
+\end{subfigure}
+\label{fig:test}
+\textit{Figure 4.} 
+\end{figure*}
+
+
 \begin{center}
 \begin{figure*}
-\includegraphics[scale=0.9]{../XY_stats.png}
+\includegraphics[scale=0.9]{../figures/XY_stats.png}
 
-\textit{Figure 3. The squares represent the center of each pixel and the circles represent the average initial position of the electrons which hit the pixel. Both squares and circles are colored according to the average distance the electrons travel before hitting the cell.} 
+\textit{Figure 5.} The squares represent the center of each pixel and the circles represent the average initial position of the electrons which hit the pixel. Both squares and circles are colored according to the average distance the electrons travel before hitting the cell.
 \end{figure*}
 \end{center}
 

@@ -23,11 +23,11 @@ int get_bin_index(double energy, double bin_width){
 }
 
 double get_cell_centerx(int i){
-	return 3*i/16-22.5;
+	return 3.0*floor(i/16.0)-22.5;
 }
 
 double get_cell_centery(int i){
-	return 3*(i%16)-22.5;
+	return 3.0*(i%16)-22.5;
 }
 
 int main(int argc, char *argv[]){
@@ -37,8 +37,8 @@ int main(int argc, char *argv[]){
 	****** READ IN DATA ******
 	*************************/
 
-		// limit number of events to read in
-	int max = 500000;
+	// limit number of events to read in
+	int max = 1000000;
 
 	// matrices to store energy deposition and initial positions
 	vector<vector<double>> energy;
@@ -69,6 +69,8 @@ int main(int argc, char *argv[]){
 	
 	// close file
 	infile.close();
+
+
 
 	
 	cout << "writing to... 'cell_stats.dat'" << endl;
@@ -120,7 +122,6 @@ int main(int argc, char *argv[]){
 
 	outfile.close();
 	
-	/* WRITING VARIOUS FILES TO ANALYZE
 	double bin_width = 10;
 	double max_energy = 3070;
 	int nbins = ceil(max_energy/bin_width);
@@ -184,9 +185,7 @@ int main(int argc, char *argv[]){
 	}
 
 	outfile3.close();
-	*/
 
-	/*
 	for(int targetcell = 0; targetcell < 256; ++targetcell){
 
 		cout << targetcell << endl;
@@ -205,7 +204,7 @@ int main(int argc, char *argv[]){
 
 		outfile.close();
 	}
-	*/
+
 
 
 	return 0;

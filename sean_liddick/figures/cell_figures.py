@@ -141,6 +141,7 @@ for i in range(0,256):
 	axScatter.add_patch(rect)
 
 
+	axScatter.text(19, 20, str(i),fontsize=20,verticalalignment='center',horizontalalignment='left')
 	figname = 'cell'+str(i)+'.png'
 	plt.savefig(figname, format='png')
 	#os.system('okular '+figname)
