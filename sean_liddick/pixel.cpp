@@ -31,11 +31,11 @@ void CPixel::guess_params(){
 double CPixel::probx(double x){
 	if((x >= x1_) && (x <= x2_)) return normx_;
 	if(x < x1_) return normx_*exp(alpha1_*(x-x1_));
-	if(x > x2_) return normx_*exp(-alpha2_*(x-x_2));
+	if(x > x2_) return normx_*exp(-alpha2_*(x-x2_));
 }
 
 double CPixel::proby(double y){
 	if((y >= y1_) && (y <= y2_)) return normy_;
 	if(y < y1_) return normy_*exp(beta1_*(y-y1_));
-	if(y > y2_) return normy_*exp(-beta2_*(y-y_2));
+	if(y > y2_) return normy_*exp(-beta2_*(y-y2_));
 }

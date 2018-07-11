@@ -22,14 +22,11 @@ public:
 	// stores event numbers that involve pixel
 	vector<int> event_;
 
-	// stores energy deposited into pixel
+	// stores energy deposited into pixel for each relevant event
 	vector<double> E_;
 
 	// stores initial positions of electrons that hit pixel
 	vector<double> X_, Y_;
-
-
-
 
 
 	// probability distribution parameters
@@ -42,9 +39,6 @@ public:
 	void guess_params();
 	double probx(double x);
 	double proby(double y);
-
-
-
 
 };
 

@@ -12,13 +12,8 @@ using namespace std;
 
 int main(int argc, char *argv[]){
 
-
-	/*************************
-	****** READ IN DATA ******
-	*************************/
-
 	// limit number of events to read in
-	int max = 1000000;
+	int max = 10000;
 
 	// matrices to store energy deposition and initial positions
 	vector<vector<double>> energy;

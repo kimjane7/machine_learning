@@ -121,6 +121,7 @@ for i in range(0,256):
 	axHisty.locator_params(axis='x',nbins=5)
 	axHistx.locator_params(axis='y',nbins=5)
 
+	'''
 	lnspc = np.linspace(-lim, lim, 1000)
 	a,b,c = stats.gennorm.fit(file[0])
 	pdf_norm = stats.gennorm.pdf(lnspc,a*2,b,c*1.3)
@@ -128,6 +129,7 @@ for i in range(0,256):
 	a,b,c = stats.gennorm.fit(file[1])
 	pdf_norm = stats.gennorm.pdf(lnspc,a*2,b,c*1.3)
 	axHisty.plot(pdf_norm, lnspc, linewidth=1, color='k')
+	'''
 
 	axScatter.set_xlabel(r'$x_0$ (mm)')
 	axScatter.set_ylabel(r'$y_0$ (mm)')
