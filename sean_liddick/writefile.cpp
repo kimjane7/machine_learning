@@ -74,6 +74,23 @@ int main(int argc, char *argv[]){
 
 
 
+	for(int targetcell = 0; targetcell < 256; ++targetcell){
+
+		cout << targetcell << endl;
+
+		ofstream outfile;
+		outfile.open("cell"+to_string(targetcell)+".dat");
+
+		for(int i = 0; i < max; ++i){
+			if(energy[i][targetcell] > 0){
+				outfile << position[i][0] << "\t" << position[i][1] << "\t" << energy[i][targetcell] << endl; 
+			}
+		}
+
+		outfile.close();
+	}
+
+/*
 	
 	cout << "writing to... 'cell_stats.dat'" << endl;
 	ofstream outfile;
@@ -188,26 +205,7 @@ int main(int argc, char *argv[]){
 
 	outfile3.close();
 
-	for(int targetcell = 0; targetcell < 256; ++targetcell){
-
-		cout << targetcell << endl;
-
-		ofstream outfile;
-		outfile.open("cell"+to_string(targetcell)+".dat");
-
-		for(int i = 0; i < max; ++i){
-
-			for(int j = 0; j < 256; ++j){
-				if(energy[i][j] > 0){
-					if(j == targetcell) outfile << position[i][0] << "\t" << position[i][1] << endl; 
-				}
-			}
-		}
-
-		outfile.close();
-	}
-
-
+*/
 
 	return 0;
 }
